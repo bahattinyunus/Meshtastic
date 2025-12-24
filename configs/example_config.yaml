@@ -1,0 +1,25 @@
+# Meshtastic Taktik Cihaz Konfigürasyonu (YAML)
+# Bu dosya, saha cihazları için standart parametreleri içerir.
+
+device:
+  role: ROUTER_CLIENT
+  name: "COMMAND_POST_ALPHA"
+  region: "EU868"  # Türkiye ve Avrupa için
+
+lora:
+  channel_num: 0
+  modem_preset: LONG_FAST
+  hop_limit: 3
+  tx_power: 30  # dBm (Max power)
+
+telemetry:
+  device_battery_ina_address: 0
+  environment_measurement_interval: 300
+
+channels:
+  - index: 0
+    name: "TACTICAL-MAIN"
+    psk: "base64:randomsecrethashhere=" # Ana şifreli kanal
+  - index: 1
+    name: "EMERGENCY"
+    psk: "" # Açık, şifresiz acil durum kanalı

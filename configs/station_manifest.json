@@ -1,0 +1,21 @@
+{
+    "station_identity": {
+        "callsign": "COMMAND_POST_ALPHA",
+        "operator": "ADMIN_01",
+        "clearance_level": "LEVEL_5",
+        "deployment_date": "2025-01-01"
+    },
+    "network_parameters": {
+        "primary_channel_hash": "A1B2C3D4",
+        "backup_frequency": "868.125 MHz",
+        "encryption_active": true
+    },
+    "assets": {
+        "connected_nodes": [],
+        "inventory": [
+            "T-Beam v1.1",
+            "T-Echo",
+            "RAK4631"
+        ]
+    }
+}

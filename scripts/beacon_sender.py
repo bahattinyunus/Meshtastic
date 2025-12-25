@@ -21,12 +21,17 @@ def start_beacon_loop(interval=10, message="BEACON_ALIVE"):
         return
 
     print("--- AUTOMATED BEACON SEQUENCE INITIATED ---")
+    seq = 0
     try:
         while True:
-            interface.send_broadcast(f"AUTO-MSG: {message}")
+            seq += 1
+            full_msg = f"SEQ:{seq:04d} | {message}"
+            interface.send_broadcast(full_msg)
             time.sleep(interval)
     except KeyboardInterrupt:
         print("\n--- SEQUENCE ABORTED BY USER ---")
+        if interface.interface:
+            interface.interface.close()
 
 if __name__ == "__main__":
-    start_beacon_loop(interval=5, message="STATUS: GREEN | SECTOR: ALPHA")
+    start_beacon_loop(interval=15, message="STATUS: GREEN | SECTOR: ALPHA")

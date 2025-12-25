@@ -1,0 +1,67 @@
+<svg width="800" height="200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Definitions for gradients and filters -->
+  <defs>
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e293b;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="neon-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00ff88;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00ccff;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#334155" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="200" fill="url(#bg-grad)" rx="10" ry="10"/>
+  <rect width="800" height="200" fill="url(#grid)" rx="10" ry="10" opacity="0.3"/>
+
+  <!-- Decorative Hexagons -->
+  <path d="M750 30 L770 40 L770 60 L750 70 L730 60 L730 40 Z" fill="none" stroke="#334155" stroke-width="2"/>
+  <path d="M720 80 L740 90 L740 110 L720 120 L700 110 L700 90 Z" fill="none" stroke="#334155" stroke-width="2"/>
+  
+  <!-- Left Graphic: Radio Waves / Target -->
+  <g transform="translate(80, 100)">
+     <circle cx="0" cy="0" r="40" stroke="#334155" stroke-width="2" fill="none"/>
+     <circle cx="0" cy="0" r="30" stroke="#00ff88" stroke-width="2" fill="none" opacity="0.5"/>
+     <circle cx="0" cy="0" r="20" stroke="#00ff88" stroke-width="2" fill="none" class="pulse"/>
+     <circle cx="0" cy="0" r="5" fill="#00ff88" filter="url(#glow)"/>
+     <!-- Radar Scan Line -->
+     <line x1="0" y1="0" x2="35" y2="-35" stroke="#00ff88" stroke-width="2" opacity="0.8">
+        <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="4s" repeatCount="indefinite"/>
+     </line>
+  </g>
+
+  <!-- Main Title -->
+  <text x="400" y="90" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-weight="bold" font-size="36" fill="white" filter="url(#glow)">
+    MESHTASTIC
+  </text>
+  <text x="400" y="130" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-weight="300" font-size="24" fill="url(#neon-grad)" letter-spacing="4">
+    TACTICAL COMMAND CENTER
+  </text>
+
+  <!-- Status indicators -->
+  <g transform="translate(680, 160)">
+    <rect x="0" y="0" width="80" height="20" rx="4" fill="#1e293b" stroke="#00ff88" stroke-width="1"/>
+    <text x="40" y="14" text-anchor="middle" font-family="monospace" font-size="10" fill="#00ff88">ONLINE</text>
+  </g>
+  <g transform="translate(40, 160)">
+    <rect x="0" y="0" width="80" height="20" rx="4" fill="#1e293b" stroke="#00ccff" stroke-width="1"/>
+    <text x="40" y="14" text-anchor="middle" font-family="monospace" font-size="10" fill="#00ccff">v2.5.0</text>
+  </g>
+
+  <!-- Border Frame -->
+  <rect x="10" y="10" width="780" height="180" rx="8" ry="8" fill="none" stroke="#334155" stroke-width="2"/>
+  <path d="M10 50 L10 10 M50 10" stroke="#00ff88" stroke-width="3" fill="none" filter="url(#glow)"/>
+  <path d="M790 150 L790 190 L750 190" stroke="#00ccff" stroke-width="3" fill="none" filter="url(#glow)"/>
+
+</svg>

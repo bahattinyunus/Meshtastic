@@ -1,25 +1,32 @@
-# Meshtastic Taktik Cihaz Konfigürasyonu (YAML)
-# Bu dosya, saha cihazları için standart parametreleri içerir.
+# 📡 Meshtastic Taktik Cihaz Konfigürasyonu (YAML)
+# -----------------------------------------------------------------
+# Bu dosya, saha cihazları için standart operasyonel parametreleri içerir.
+# Ayarlar, Türkiye (EU868) regülasyonlarına ve taktiksel güvenliğe uygundur.
 
 device:
-  role: ROUTER_CLIENT
-  name: "COMMAND_POST_ALPHA"
-  region: "EU868"  # Türkiye ve Avrupa için
+  role: ROUTER_CLIENT     # Cihazın ağdaki rolü. ROUTER_CLIENT hem mesaj gönderir hem de iletir.
+  name: "COMMAND_POST_01" # Cihazın uzun ismi (Maks 12 karakter önerilir)
+  region: "EU868"         # Bölge ayarı. Türkiye için hayati derecede önemlidir.
 
 lora:
-  channel_num: 0
-  modem_preset: LONG_FAST
-  hop_limit: 3
-  tx_power: 30  # dBm (Max power)
+  channel_num: 0          # Operasyonel kanal numarası.
+  modem_preset: LONG_FAST # Menzil/Hız dengesi. En güvenilir moddur.
+  hop_limit: 3            # Bir paketin ağda en fazla kaç kez "atlayabileceği" (Sekme sınırı).
+  tx_power: 30            # Çıkış gücü (dBm). 30 dBm = En yüksek donanım gücü.
 
 telemetry:
-  device_battery_ina_address: 0
-  environment_measurement_interval: 300
+  device_battery_ina_address: 0      # Batarya ölçüm devresi adresi (I2C).
+  environment_measurement_interval: 300 # Ölçüm verilerinin gönderilme sıklığı (Saniye).
 
 channels:
   - index: 0
-    name: "TACTICAL-MAIN"
-    psk: "base64:randomsecrethashhere=" # Ana şifreli kanal
+    name: "TACTICAL-HQ"               # Ana görev kanalı.
+    psk: "base64:randomsecrethashhere=" # AES-256 şifreleme anahtarı (Kritik Gizlilik).
+    
   - index: 1
-    name: "EMERGENCY"
-    psk: "" # Açık, şifresiz acil durum kanalı
+    name: "EMERGENCY"                 # Acil durum kanalı.
+    psk: ""                           # Şifresiz. Ağdaki tüm Meshtastic cihazları görebilir.
+
+# -----------------------------------------------------------------
+# NOT: Bu konfigürasyonu cihaza yüklemek için:
+# 'meshtastic --configure example_config.yaml' komutunu kullanın.
